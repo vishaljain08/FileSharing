@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Details</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="/style.css" type="text/css" rel="stylesheet" />
+		<script src="/main.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<div class="banner">
+				<div class="logo">
+					<h1>File Sharing</h1>
+				</div>
+				<div class="opt-panel">
+					<div class="btn">
+						<a href="/logout">
+							<button>Log Out</button>
+						</a>
+					</div>
+					<div class="btn">
+						<a href="/">
+							<button>Home</button>
+						</a>
+					</div>
+					<div class="btn">
+						<a href="/secure/upload">
+							<button>Upload</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="content">
+				<section class="form-section details">
+					<center>
+						<br>
+						<br>
+						<p>
+							<h1>Details</h1>
+						</p>
+						<br>
+						<br>
+					</center>
+				
+					{{#each file}}
+					<div class="info">
+						<p>
+							Upload ID: {{this.id}}
+						</p>
+						<p>
+							Name: {{this.name}}
+						</p>
+						<p>
+							File Type: {{this.type}}
+						</p>
+						<p>
+							Description: <br>
+							{{this.description}}
+						</p>
+						<p>
+							Filename: {{this.file}}
+						</p>
+					</div>
+					<div class="download">
+						<form action="/secure/download" method="POST" >
+							<input type="hidden" name="userId" value="{{this.userid}}">
+							<input type="hidden" name="fileId" value="{{this.id}}">
+							<input type="hidden" name="fileName" value="{{this.file}}">
+							<input type="hidden" name="type" value="{{this.type}}">
+							<input type="submit" value="Download">
+						</form>
+						
+					</div>
+					{{/each}}
+				</section>
+			</div>
+		</main>
+		<div class="msg">
+			{{#if msg}}
+			{{msg}}
+			{{/if}}
+		</div>
+	</body>
+	{{#if msg}}
+	<script>
+		function showMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'block'
+		}
+		function hideMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'none'
+		}
+
+		showMessage()
+		window.setTimeout(hideMessage, 2000)
+	</script>
+	{{/if}}
+</html>

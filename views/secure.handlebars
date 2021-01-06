@@ -1,0 +1,81 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Files</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="/style.css" type="text/css" rel="stylesheet" />
+		<script src="/main.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="banner">
+				<div class="logo">
+					<h1>File Sharing</h1>
+				</div>
+				<div class="opt-panel">
+					<div class="btn">
+						<a href="/logout">
+							<button>Log Out</button>
+						</a>
+					</div>
+					<div class="btn">
+						<a href="/">
+							<button>Home</button>
+						</a>
+					</div>
+					<div class="btn">
+						<a href="/secure/upload">
+							<button>Upload</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="content">
+				<center>
+					<table>
+						{{#if records}}
+						<tr>
+							<th>Name</th>
+							<th>File Type</th>
+						</tr>
+							{{#each records}}
+							<tr>
+								<td><a href="/secure/details/{{this.id}}">{{this.name}}</a></td>
+								<td>{{this.type}}</td>
+							</tr>
+							{{/each}}
+						{{else}}
+						<p>You do not have any files. Click on Upload to add new files.</p>
+						{{/if}}
+					</table>
+				</center>
+			</div>
+		</main>
+		<div class="msg">
+			{{#if msg}}
+			{{msg}}
+			{{/if}}
+		</div>
+	</body>
+	{{#if msg}}
+	<script>
+		function showMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'block'
+		}
+		function hideMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'none'
+		}
+
+		showMessage()
+		window.setTimeout(hideMessage, 2000)
+	</script>
+	{{/if}}
+</html>

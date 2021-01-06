@@ -1,0 +1,79 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Log In</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="/main.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="banner">
+				<div class="logo">
+					<h1>File Sharing</h1>
+				</div>
+				<div class="opt-panel">
+					<div class="btn">
+						<a href="/register">
+							<button>Register</button>
+						</a>
+					</div>
+					<div class="btn">
+						<a href="/">
+							<button>Home</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="content">
+				<section class="form-section">
+					<center>
+						<br>
+						<br>
+						<p>
+								<h1>Log In</h1>
+						</p>
+						<br>
+						<br>
+						<form action="/login" method="post" class="login">
+								<input type="text" name="user" placeholder="Username" value="{{body.user}}" autofocus>
+							
+							
+								<input type="password" name="pass" placeholder="Password" value="{{body.pass}}">
+							
+								<input type="hidden" name="referrer" value="{{referrer}}">
+							
+								<input type="submit" value="Log in">
+						</form>
+					</center>
+				</section>
+			</div>
+		</main>
+		<div class="msg">
+			{{#if msg}}
+			{{msg}}
+			{{/if}}
+		</div>
+	</body>
+	{{#if msg}}
+	<script>
+		function showMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'block'
+		}
+		function hideMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'none'
+		}
+
+		showMessage()
+		window.setTimeout(hideMessage, 2000)
+	</script>
+	{{/if}}
+</html>

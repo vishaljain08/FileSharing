@@ -1,0 +1,78 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Create an Account</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="/main.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="banner">
+				<div class="logo">
+					<h1>File Sharing</h1>
+				</div>
+				<div class="opt-panel">
+					<div class="btn">
+						<a href="/login">
+							<button>Log In</button>
+						</a>
+					</div>
+					<div class="btn">
+						<a href="/">
+							<button>Home</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="content">
+				<section class="form-section">
+					<center>
+						<br>
+						
+						<p>
+							<h1>Create An Account</h1>
+						</p>
+						
+						<br>
+						<form action="/register" method="post" enctype="multipart/form-data" class="register">
+							<input type="text" name="user" placeholder="Preferred Username (no spaces)" value="{{body.user}}">
+							
+							<input type="password" name="pass" placeholder="Chosen Password" value="{{body.pass}}">
+							
+							<input type="email" name="email" placeholder="A Valid Email Address" value="{{body.email}}">
+							
+							<input type="submit" value="Create">
+						</form>
+					</center>
+				</section>
+			</div>
+		</main>
+		<div class="msg">
+			{{#if msg}}
+			{{msg}}
+			{{/if}}
+		</div>
+	</body>
+	{{#if msg}}
+	<script>
+		function showMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'block'
+		}
+		function hideMessage() {
+			var msgBox = document.getElementsByClassName("msg")[0]
+			msgBox.style.display = 'none'
+		}
+
+		showMessage()
+		window.setTimeout(hideMessage, 2000)
+	</script>
+	{{/if}}
+</html>
